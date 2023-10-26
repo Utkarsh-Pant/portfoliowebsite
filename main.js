@@ -1,3 +1,4 @@
+//Code for the text-cycling effect
 function cycleText(i,j, verbs, textElement,reverse=1) {
     if (verbs.length > i) {
         setTimeout(function() { 
@@ -47,17 +48,27 @@ function cycleText(i,j, verbs, textElement,reverse=1) {
 
 var verbs = [" developer"," student","n enthusiast"];
 let textElement = document.getElementById("changingText");
-
 setTimeout(function() {cycleText(0,verbs[0].length,verbs, textElement,-1);}, 3000);
 
+// Code for the custom cursor to work
+var cur = document.getElementById("cursor");
+document.addEventListener("mousemove", function(event){
+    cur.style.left=(event.clientX-15).toString() + "px";
+    cur.style.top=(event.clientY-5).toString() + "px";
+});
 
-//var cur = document.getElementById("cursor");
+// Code for the custom cursor hover effect
 
+var elements = document.getElementsByClassName("hoverEffect");
 
-// document.addEventListener("mousemove", function(event){
-//     cur.style.left=(event.clientX-15).toString() + "px";
-//     cur.style.top=(event.clientY-5).toString() + "px";
-//     console.log(event.clientX, event.clientY);
-// });
+for(i=0;i<elements.length;i++){
+    elements[i].onmouseover=function(){
+        cur.style["boxShadow"] = "0px 0px 5px #00FFFF, 0px 0px 25px #00FFFF";
+        cur.style["borderColor"] = "#00FFFF";
+    }
 
-
+    elements[i].onmouseout = function(){
+        cur.style["boxShadow"] = "0px 0px 5px #99CCED, 0px 0px 25px #99cced";
+        cur.style["borderColor"] = "#9c89ff";        
+    }
+}
